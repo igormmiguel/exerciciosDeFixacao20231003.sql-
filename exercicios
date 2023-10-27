@@ -55,3 +55,19 @@ BEGIN
     CLOSE cur;
 END//
 DELIMITER ;
+
+-- ex 4.
+DELIMITER //
+CREATE FUNCTION media_livros_por_editora() RETURNS FLOAT
+BEGIN
+    DECLARE livros_editoras INT;
+    DECLARE quant_livros INT;
+    DECLARE media FLOAT;
+    
+    SELECT COUNT(*) INTO livros_editoras FROM Editora;
+    SELECT COUNT(*) INTO quant_livros FROM Livro;
+    
+    SET media = quant_livros / livros_editoras;
+    RETURN media;
+END//
+DELIMITER ;
